@@ -14,8 +14,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"golang.org/x/image/bmp"
-	"golang.org/x/image/tiff"
+	//"golang.org/x/image/bmp"
+	//"golang.org/x/image/tiff"
 )
 
 // Format is an image file format.
@@ -26,8 +26,8 @@ const (
 	JPEG Format = iota
 	PNG
 	GIF
-	TIFF
-	BMP
+	//TIFF
+//	BMP
 )
 
 func (f Format) String() string {
@@ -38,10 +38,10 @@ func (f Format) String() string {
 		return "PNG"
 	case GIF:
 		return "GIF"
-	case TIFF:
+/*	case TIFF:
 		return "TIFF"
 	case BMP:
-		return "BMP"
+		return "BMP"*/
 	default:
 		return "Unsupported"
 	}
@@ -51,9 +51,9 @@ var formatFromExt = map[string]Format{
 	"jpg":  JPEG,
 	"jpeg": JPEG,
 	"png":  PNG,
-	"tif":  TIFF,
+/*	"tif":  TIFF,
 	"tiff": TIFF,
-	"bmp":  BMP,
+	"bmp":  BMP,*/
 	"gif":  GIF,
 }
 
@@ -257,12 +257,12 @@ func Encode(w io.Writer, img image.Image, format Format, opts ...EncodeOption) e
 			Drawer:    cfg.gifDrawer,
 		})
 
-	case TIFF:
+	/*case TIFF:
 		err = tiff.Encode(w, img, &tiff.Options{Compression: tiff.Deflate, Predictor: true})
 
 	case BMP:
 		err = bmp.Encode(w, img)
-
+*/
 	default:
 		err = ErrUnsupportedFormat
 	}
